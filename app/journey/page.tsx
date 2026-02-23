@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   title: 'Journey – Daniel Pratt',
 }
 
+export const dynamic = 'force-dynamic'
+
 interface Milestone {
   id: number
   order_index: number
