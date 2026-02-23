@@ -1,115 +1,37 @@
 import type { Metadata } from 'next'
 import styles from './journey.module.css'
+import { supabase } from '@/lib/supabase'
 
 export const metadata: Metadata = {
   title: 'Journey – Daniel Pratt',
 }
 
-const milestones = [
-  {
-    date: 'Early 2025',
-    tag: 'Environment',
-    tagClass: 'tagEnv',
-    title: 'Set up Mac development environment',
-    desc: 'The first real step: getting the machine ready. Installed Homebrew — the missing package manager for macOS — then used it to install Node.js. A dev environment that would have felt foreign a few months earlier suddenly felt like home base.',
-    chips: ['Homebrew', 'Node.js', 'Terminal', 'macOS'],
-    delay: '0.05s',
-  },
-  {
-    date: '2025',
-    tag: 'Tools',
-    tagClass: 'tagTools',
-    title: 'Installed Claude Code',
-    desc: 'Discovered and installed Claude Code — an AI-powered CLI that sits right in the terminal. A game-changer for someone learning to code: a collaborator who never gets frustrated, explains everything, and writes alongside you. Having this tool made the steep parts of the learning curve dramatically more approachable.',
-    chips: ['Claude Code', 'CLI', 'AI-assisted coding'],
-    delay: '0.15s',
-  },
-  {
-    date: '2025',
-    tag: 'HTML',
-    tagClass: 'tagCode',
-    title: 'Built my first webpage with HTML',
-    desc: null,
-    descJsx: true,
-    chips: ['HTML', 'CSS', 'Browser DevTools'],
-    delay: '0.25s',
-  },
-  {
-    date: '2025',
-    tag: 'Project',
-    tagClass: 'tagProject',
-    title: 'Built a multi-page personal website with a modern design',
-    desc: 'Went from a single HTML file to a complete, multi-page personal site with a consistent design system — navigation, colour palette, typography, components, responsive layout, and multiple linked pages. This site is the proof. Every pixel is a lesson learned.',
-    chips: ['CSS Variables', 'Responsive Design', 'Multi-page site', 'Design Systems', 'Forms', 'Navigation'],
-    delay: '0.35s',
-  },
-  {
-    date: '2026',
-    tag: 'Git',
-    tagClass: 'tagProject',
-    title: 'Pushed my website to GitHub for the first time',
-    desc: 'Set up a GitHub repository, configured git with my name and email, and pushed my code to the cloud for the first time. Version control went from being an abstract concept to something I actually use — every commit is now a permanent record of progress.',
-    chips: ['Git', 'GitHub', 'GitHub CLI', 'Version Control'],
-    delay: '0.45s',
-  },
-  {
-    date: '2026',
-    tag: 'Deploy',
-    tagClass: 'tagProject',
-    title: 'Deployed my website live on the internet using Vercel',
-    desc: 'Went from files sitting on a hard drive to a real, live website accessible to anyone in the world. Connecting GitHub to Vercel and watching the site go live was a genuine milestone — the moment a project stops being local and starts being real.',
-    chips: ['Vercel', 'Deployment', 'DNS', 'Hosting'],
-    delay: '0.55s',
-  },
-  {
-    date: '2026',
-    tag: 'JavaScript',
-    tagClass: 'tagCode',
-    title: 'Fixed mobile navigation with a hamburger menu',
-    desc: 'The site looked great on desktop but the navigation just disappeared on mobile. Learned how to write JavaScript to make the hamburger icon toggle a dropdown menu — the first time I used JS to make something actually interactive on a page.',
-    chips: ['JavaScript', 'DOM Events', 'Responsive Design', 'CSS Transitions'],
-    delay: '0.65s',
-  },
-  {
-    date: '2026',
-    tag: 'Workflow',
-    tagClass: 'tagTools',
-    title: 'Learned to push code updates and see my live site update automatically',
-    desc: null,
-    descWorkflow: true,
-    chips: ['CI/CD', 'git push', 'Vercel', 'Deployment Pipeline'],
-    delay: '0.75s',
-  },
-  {
-    date: '2026',
-    tag: 'Next.js',
-    tagClass: 'tagProject',
-    title: 'Converted my HTML website to Next.js — a professional web framework',
-    desc: 'Took the entire site from plain HTML files to a proper React-based framework used by companies like Netflix, TikTok, and Airbnb. Learned about components, routing, server vs. client rendering, CSS Modules, and TypeScript. A huge step from static pages to professional-grade web development.',
-    chips: ['Next.js', 'React', 'TypeScript', 'CSS Modules', 'App Router', 'Components'],
-    delay: '0.85s',
-  },
-  {
-    date: '2026',
-    tag: 'Concepts',
-    tagClass: 'tagEnv',
-    title: 'Learned the difference between static HTML and dynamic JavaScript',
-    desc: 'One of the most important conceptual leaps in web development: understanding that static HTML is fixed content delivered as-is, while dynamic JavaScript can react to user input, manage state, and update the page without a full reload. Seeing this difference in practice — through the feedback form\'s live character counter and hamburger menu — made it real.',
-    chips: ['Static vs Dynamic', 'React State', 'Client Components', 'Server Components', 'Interactivity'],
-    delay: '0.95s',
-  },
-  {
-    date: '2026',
-    tag: 'Deploy',
-    tagClass: 'tagProject',
-    title: 'Deployed my Next.js site live on Vercel',
-    desc: 'Pushed the Next.js project to GitHub and connected it to Vercel for a second live deployment — this time with server-side rendering, optimised static generation, and a proper build pipeline. The site now builds and deploys automatically on every push, just like a professional engineering team would work.',
-    chips: ['Vercel', 'Next.js Deploy', 'Static Generation', 'Build Pipeline', 'GitHub Integration'],
-    delay: '1.05s',
-  },
-]
+interface Milestone {
+  id: number
+  order_index: number
+  date: string
+  tag: string
+  tag_class: string
+  title: string
+  description: string | null
+  content_type: string
+  chips: string[]
+}
 
-export default function JourneyPage() {
+export default async function JourneyPage() {
+  const { data: milestones, error } = await supabase
+    .from('milestones')
+    .select('*')
+    .order('order_index', { ascending: true })
+
+  if (error || !milestones) {
+    return (
+      <section style={{ padding: '4rem 2rem', textAlign: 'center' }}>
+        <p>Unable to load milestones right now. Please try again later.</p>
+      </section>
+    )
+  }
+
   return (
     <>
       {/* Hero */}
@@ -152,32 +74,32 @@ export default function JourneyPage() {
 
         {/* Track */}
         <div className={styles.tlTrack}>
-          {milestones.map((m, i) => (
+          {milestones.map((m: Milestone, index: number) => (
             <div
-              key={i}
+              key={m.id}
               className={styles.milestone}
-              style={{ animationDelay: m.delay }}
+              style={{ animationDelay: `${(index * 0.1 + 0.05).toFixed(2)}s` }}
             >
               <div className={styles.milestoneCard}>
                 <div className={styles.milestoneMeta}>
                   <span className={styles.milestoneDate}>{m.date}</span>
-                  <span className={`${styles.milestoneTag} ${styles[m.tagClass as keyof typeof styles]}`}>{m.tag}</span>
+                  <span className={`${styles.milestoneTag} ${styles[m.tag_class as keyof typeof styles]}`}>{m.tag}</span>
                 </div>
                 <h3>{m.title}</h3>
-                {m.descJsx ? (
+                {m.content_type === 'html_first' ? (
                   <p>
                     The classic moment: opening a text editor, writing{' '}
                     <code className={styles.inlineCode}>&lt;!DOCTYPE html&gt;</code>
                     , and seeing something appear in a browser window. It was simple, it was rough &mdash; and it was mine. Understanding that a webpage is just a text file the browser reads changed how I see the whole web.
                   </p>
-                ) : m.descWorkflow ? (
+                ) : m.content_type === 'workflow' ? (
                   <p>
                     Discovered the power of a real deployment pipeline: make a change, commit, push to GitHub, and within seconds the live site updates. No manual uploading, no FTP &mdash; just{' '}
                     <code className={styles.inlineCode}>git push</code>
                     {' '}and it&apos;s live. This is how professionals ship.
                   </p>
                 ) : (
-                  <p>{m.desc}</p>
+                  <p>{m.description}</p>
                 )}
                 <div className={styles.milestoneChips}>
                   {m.chips.map((chip) => (
