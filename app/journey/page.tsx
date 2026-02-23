@@ -21,10 +21,17 @@ interface Milestone {
 }
 
 export default async function JourneyPage() {
+  console.log('[journey] fetching milestones at', new Date().toISOString())
+
   const { data: milestones, error } = await supabase
     .from('milestones')
     .select('*')
     .order('order_index', { ascending: true })
+
+  console.log('[journey] result — count:', milestones?.length ?? 0, '| error:', error ?? 'none')
+  if (milestones) {
+    console.log('[journey] order_indexes:', milestones.map((m) => m.order_index))
+  }
 
   if (error || !milestones) {
     return (
