@@ -80,6 +80,33 @@ const milestones = [
     chips: ['CI/CD', 'git push', 'Vercel', 'Deployment Pipeline'],
     delay: '0.75s',
   },
+  {
+    date: '2026',
+    tag: 'Next.js',
+    tagClass: 'tagProject',
+    title: 'Converted my HTML website to Next.js — a professional web framework',
+    desc: 'Took the entire site from plain HTML files to a proper React-based framework used by companies like Netflix, TikTok, and Airbnb. Learned about components, routing, server vs. client rendering, CSS Modules, and TypeScript. A huge step from static pages to professional-grade web development.',
+    chips: ['Next.js', 'React', 'TypeScript', 'CSS Modules', 'App Router', 'Components'],
+    delay: '0.85s',
+  },
+  {
+    date: '2026',
+    tag: 'Concepts',
+    tagClass: 'tagEnv',
+    title: 'Learned the difference between static HTML and dynamic JavaScript',
+    desc: 'One of the most important conceptual leaps in web development: understanding that static HTML is fixed content delivered as-is, while dynamic JavaScript can react to user input, manage state, and update the page without a full reload. Seeing this difference in practice — through the feedback form\'s live character counter and hamburger menu — made it real.',
+    chips: ['Static vs Dynamic', 'React State', 'Client Components', 'Server Components', 'Interactivity'],
+    delay: '0.95s',
+  },
+  {
+    date: '2026',
+    tag: 'Deploy',
+    tagClass: 'tagProject',
+    title: 'Deployed my Next.js site live on Vercel',
+    desc: 'Pushed the Next.js project to GitHub and connected it to Vercel for a second live deployment — this time with server-side rendering, optimised static generation, and a proper build pipeline. The site now builds and deploys automatically on every push, just like a professional engineering team would work.',
+    chips: ['Vercel', 'Next.js Deploy', 'Static Generation', 'Build Pipeline', 'GitHub Integration'],
+    delay: '1.05s',
+  },
 ]
 
 export default function JourneyPage() {
@@ -110,7 +137,7 @@ export default function JourneyPage() {
         {/* Stats */}
         <div className={styles.statsBar}>
           <div className={styles.statPill}>
-            <div className={styles.statVal}>8</div>
+            <div className={styles.statVal}>11</div>
             <div className={styles.statLbl}>Milestones hit</div>
           </div>
           <div className={styles.statPill}>
