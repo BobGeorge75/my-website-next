@@ -1,0 +1,184 @@
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8rem 2rem 4rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(201, 168, 76, 0.12);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  color: var(--accent-soft);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.h1 {
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+
+.h1Gradient {
+  background: linear-gradient(135deg, var(--accent-soft) 0%, #f5d98a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroDesc {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  line-height: 1.75;
+}
+
+.ctaGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* ── Sections ── */
+.section {
+  padding: 6rem 2rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.sectionLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-soft);
+  margin-bottom: 0.75rem;
+}
+
+.h2 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Bio ── */
+.bioText {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  max-width: 620px;
+}
+
+.bioText p + p {
+  margin-top: 1.2rem;
+}
+
+/* ── Skills ── */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.skillChip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  transition: all 0.2s;
+}
+
+.skillChip:hover {
+  border-color: var(--accent);
+  color: var(--accent-soft);
+}
+
+/* ── Contact ── */
+.contactCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contactCard p {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.contactLink:hover {
+  color: var(--accent-soft);
+}
+
+.contactLink svg {
+  opacity: 0.6;
+}
+
+.contactButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .contactCard { padding: 1.5rem; }
+}

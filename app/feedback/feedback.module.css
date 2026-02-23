@@ -1,0 +1,148 @@
+.main {
+  padding: 8rem 2rem 6rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.sectionLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-soft);
+  margin-bottom: 0.75rem;
+}
+
+.h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.pageDesc {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: var(--text);
+}
+
+.formCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.field label span {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.field input,
+.field textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.7rem 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.charCount {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+.over {
+  color: #ff6b6b;
+}
+
+.btnSubmit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--pink);
+  background: var(--pink);
+  color: #fff;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.btnSubmit:hover:not(:disabled) {
+  background: #e0007f;
+  border-color: #e0007f;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(255, 45, 155, 0.35);
+}
+
+.btnSubmit:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.successMsg {
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  color: var(--accent-soft);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .formCard { padding: 1.5rem; }
+}

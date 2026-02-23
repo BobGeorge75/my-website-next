@@ -1,0 +1,294 @@
+/* ── Hero ── */
+.hero {
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8rem 2rem 4rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(201, 168, 76, 0.12);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  color: var(--accent-soft);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 1.2rem;
+}
+
+.h1Gradient {
+  background: linear-gradient(135deg, var(--accent-soft) 0%, #f5d98a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroDesc {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* ── Timeline section ── */
+.timelineSection {
+  padding: 5rem 2rem 7rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.sectionLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-soft);
+  margin-bottom: 0.75rem;
+}
+
+.h2 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.6rem;
+}
+
+.sectionIntro {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 3.5rem;
+}
+
+/* ── Stats bar ── */
+.statsBar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.statPill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  text-align: center;
+}
+
+.statVal {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--accent-soft) 0%, #f5d98a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statLbl {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-top: 0.15rem;
+}
+
+/* ── Timeline track ── */
+.tlTrack {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.tlTrack::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent) 0%, var(--border) 90%, transparent 100%);
+}
+
+/* ── Milestone ── */
+.milestone {
+  position: relative;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.milestone::before {
+  content: '';
+  position: absolute;
+  left: -1.9rem;
+  top: 0.85rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--accent);
+  z-index: 1;
+}
+
+.milestoneCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.milestoneCard:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+  box-shadow: -4px 0 0 0 var(--accent);
+}
+
+.milestoneMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.milestoneDate {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-soft);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.milestoneTag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+}
+
+.tagEnv     { background: rgba(99, 179, 237, 0.12); color: #63b3ed; border: 1px solid rgba(99, 179, 237, 0.3); }
+.tagTools   { background: rgba(154, 117, 234, 0.12); color: #b794f4; border: 1px solid rgba(154, 117, 234, 0.3); }
+.tagCode    { background: rgba(201, 168, 76, 0.12);  color: var(--accent-soft); border: 1px solid rgba(201, 168, 76, 0.3); }
+.tagProject { background: rgba(72, 199, 142, 0.12); color: #68d391; border: 1px solid rgba(72, 199, 142, 0.3); }
+.tagNext    { background: rgba(122, 154, 184, 0.08); color: var(--muted); border: 1px solid var(--border); }
+
+.milestoneCard h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.milestoneCard p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.milestoneChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+}
+
+.mChip {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.65rem;
+  border-radius: 100px;
+}
+
+.inlineCode {
+  font-size: 0.85em;
+  background: var(--bg);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  color: var(--accent-soft);
+  font-family: monospace;
+}
+
+/* ── Coming soon ── */
+.comingSoon {
+  margin-top: 1.5rem;
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.comingSoonIcon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.comingSoon strong {
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.15rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .tlTrack { padding-left: 1.5rem; }
+  .milestone::before { left: -1.4rem; }
+  .milestoneCard { padding: 1.2rem; }
+}
