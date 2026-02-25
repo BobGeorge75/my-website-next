@@ -148,7 +148,7 @@ export default async function AdminPage() {
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Documents</h2>
 
-        <UploadForm onUploaded={() => {}} />
+        <UploadForm />
 
         <div className={styles.docList}>
           {!documents || documents.length === 0 ? (

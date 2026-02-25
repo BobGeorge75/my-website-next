@@ -1,10 +1,12 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import styles from './admin.module.css'
 
-export default function UploadForm({ onUploaded }: { onUploaded: () => void }) {
+export default function UploadForm() {
+  const router = useRouter()
   const [file, setFile] = useState<File | null>(null)
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
@@ -55,7 +57,7 @@ export default function UploadForm({ onUploaded }: { onUploaded: () => void }) {
     setDescription('')
     setFile(null)
     if (fileRef.current) fileRef.current.value = ''
-    onUploaded()
+    router.refresh()
   }
 
   return (
