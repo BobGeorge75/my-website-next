@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import styles from './Nav.module.css'
 
-type Role = 'pending' | 'member' | 'committee' | null
+type Role = 'pending' | 'member' | 'Admin' | null
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false)
@@ -114,7 +114,7 @@ export default function Nav() {
           </>
         )}
 
-        {(role === 'member' || role === 'committee') && (
+        {(role === 'member' || role === 'Admin') && (
           <>
             <li>
               <Link
@@ -126,8 +126,8 @@ export default function Nav() {
               </Link>
             </li>
             <li>
-              <span className={role === 'committee' ? styles.badgeCommittee : styles.badgeMember}>
-                {firstName || (role === 'committee' ? 'Committee' : 'Member')}
+              <span className={role === 'Admin' ? styles.badgeCommittee : styles.badgeMember}>
+                {firstName || (role === 'Admin' ? 'Admin' : 'Member')}
               </span>
             </li>
             <li>
